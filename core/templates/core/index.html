@@ -2,6 +2,51 @@
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
-<h1 class="text-3xl text-indigo-600 text-center"> Pagina de inicio </h1>
+<div class="bg-gray-300 mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+<h1 class="text-3xl text-indigo-600 text-center"> Items </h1>
+
+    <div class='grid grid-cols-3 gap-3'>
+        {% for item in items  %}
+        <div>
+            <a  href="{% url 'item:detail' item.id %}">
+                <div class='bg-white '>
+                <img class='rounded-t-xl w-100 h-80 object-cover' src='{{ item.image.url }}'>
+
+                </div>
+
+            <div class='p-6 rounded-b-xl bg-white'>
+                <h2 class='text-2xl'> {{ item.name }} </h2>
+            <p class='text-gray-500'>Precio: {{ item.price }} </p>
+            </div>
+            </a>
+        </div>
+
+
+        {% endfor %} 
+
+    </div> 
+
+</div>
+
+<div class="bg-gray-300 mt-6 px-6 pt-12 bg-gray-100 rounded-xl pb-40">
+    <h1 class="text-3xl text-indigo-600 text-center"> Categorias </h1>
+    
+        <div class='grid grid-cols-3 gap-3'>
+            {% for category in categories  %}
+            <div>
+              
+                <div class='p-6 rounded-b-xl bg-white'>
+                    <h2 class='text-2xl'> {{ category.name }} </h2>
+                <p class='text-gray-500'>{{ category.items.count }} items</p>
+                </div>
+                
+            </div>
+    
+            {% endfor %} 
+    
+        </div> 
+    
+    </div>
+
 {% endblock %}
 
